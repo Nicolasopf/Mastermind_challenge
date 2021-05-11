@@ -108,7 +108,7 @@ function check(ev){
   }
   // IF USER WINS:
   if (corrects == 4) {
-    document.getElementsByClassName(lines[tries])[0].style.backgroundColor = default_line; // Search for the current line to change the color.
+    document.getElementsByClassName(lines[tries])[0].style.backgroundColor = default_line;
     tries = 8;
     alert('You win! You are a real master mind.');
     for (var i = 1; i <= 4; i++) {
@@ -147,17 +147,20 @@ function check_tries() {
     alert('You lose, you don\'t deserve to be called a master mind')
     for (var i = 1; i <= 4; i++) {
       const victory = "victory" + i;
-      // Show the victory combination
       document.getElementById(victory).style.backgroundColor = secret[i - 1];
     }
-    // Change the background where the victory combination is
     document.getElementById('secret').style.backgroundColor = '#865c2f'
     return;
   }
 }
 
-// Clean all the board.
 function clean(ev) {
+  document.getElementsByClassName(lines[0])[0].style.backgroundColor = current_line; // Set the color of current_line to the first line
+  try {
+    document.getElementsByClassName(lines[tries])[0].style.backgroundColor = default_line; // If line[tries] exist, set the default color of the line you are playing
+  } catch (e) {
+    //pass
+  }
   for (var i = 1; i <= 8; i++) {
     for (var j = 1; j <= 4; j++) {
       const name_space = "space" + i + "-" + j;
